@@ -1,0 +1,177 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of youtube_search_result;
+
+// **************************************************************************
+// BuiltValueGenerator
+// **************************************************************************
+
+Serializer<YoutubeSearchResult> _$youtubeSearchResultSerializer =
+    new _$YoutubeSearchResultSerializer();
+
+class _$YoutubeSearchResultSerializer
+    implements StructuredSerializer<YoutubeSearchResult> {
+  @override
+  final Iterable<Type> types = const [
+    YoutubeSearchResult,
+    _$YoutubeSearchResult
+  ];
+  @override
+  final String wireName = 'YoutubeSearchResult';
+
+  @override
+  Iterable serialize(Serializers serializers, YoutubeSearchResult object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object>[
+      'searchItems',
+      serializers.serialize(object.searchItems,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(SearchItem)])),
+    ];
+    if (object.nextPageToken != null) {
+      result
+        ..add('nextPageToken')
+        ..add(serializers.serialize(object.nextPageToken,
+            specifiedType: const FullType(String)));
+    }
+
+    return result;
+  }
+
+  @override
+  YoutubeSearchResult deserialize(Serializers serializers, Iterable serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new YoutubeSearchResultBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final dynamic value = iterator.current;
+      switch (key) {
+        case 'nextPageToken':
+          result.nextPageToken = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'searchItems':
+          result.searchItems.replace(serializers.deserialize(value,
+              specifiedType: const FullType(
+                  BuiltList, const [const FullType(SearchItem)])) as BuiltList);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$YoutubeSearchResult extends YoutubeSearchResult {
+  @override
+  final String nextPageToken;
+  @override
+  final BuiltList<SearchItem> searchItems;
+
+  factory _$YoutubeSearchResult(
+          [void Function(YoutubeSearchResultBuilder) updates]) =>
+      (new YoutubeSearchResultBuilder()..update(updates)).build();
+
+  _$YoutubeSearchResult._({this.nextPageToken, this.searchItems}) : super._() {
+    if (searchItems == null) {
+      throw new BuiltValueNullFieldError('YoutubeSearchResult', 'searchItems');
+    }
+  }
+
+  @override
+  YoutubeSearchResult rebuild(
+          void Function(YoutubeSearchResultBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  YoutubeSearchResultBuilder toBuilder() =>
+      new YoutubeSearchResultBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is YoutubeSearchResult &&
+        nextPageToken == other.nextPageToken &&
+        searchItems == other.searchItems;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc($jc(0, nextPageToken.hashCode), searchItems.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('YoutubeSearchResult')
+          ..add('nextPageToken', nextPageToken)
+          ..add('searchItems', searchItems))
+        .toString();
+  }
+}
+
+class YoutubeSearchResultBuilder
+    implements Builder<YoutubeSearchResult, YoutubeSearchResultBuilder> {
+  _$YoutubeSearchResult _$v;
+
+  String _nextPageToken;
+  String get nextPageToken => _$this._nextPageToken;
+  set nextPageToken(String nextPageToken) =>
+      _$this._nextPageToken = nextPageToken;
+
+  ListBuilder<SearchItem> _searchItems;
+  ListBuilder<SearchItem> get searchItems =>
+      _$this._searchItems ??= new ListBuilder<SearchItem>();
+  set searchItems(ListBuilder<SearchItem> searchItems) =>
+      _$this._searchItems = searchItems;
+
+  YoutubeSearchResultBuilder();
+
+  YoutubeSearchResultBuilder get _$this {
+    if (_$v != null) {
+      _nextPageToken = _$v.nextPageToken;
+      _searchItems = _$v.searchItems?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(YoutubeSearchResult other) {
+    if (other == null) {
+      throw new ArgumentError.notNull('other');
+    }
+    _$v = other as _$YoutubeSearchResult;
+  }
+
+  @override
+  void update(void Function(YoutubeSearchResultBuilder) updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$YoutubeSearchResult build() {
+    _$YoutubeSearchResult _$result;
+    try {
+      _$result = _$v ??
+          new _$YoutubeSearchResult._(
+              nextPageToken: nextPageToken, searchItems: searchItems.build());
+    } catch (_) {
+      String _$failedField;
+      try {
+        _$failedField = 'searchItems';
+        searchItems.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'YoutubeSearchResult', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new

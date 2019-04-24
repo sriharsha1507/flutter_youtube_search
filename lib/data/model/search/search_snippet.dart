@@ -1,12 +1,13 @@
-library SearchSnippet;
+library search_snippet;
 
 import 'dart:convert';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
+import 'package:youtube_search/data/model/search/thumbnails.dart';
 
-part 'SearchSnippet.g.dart';
+part 'search_snippet.g.dart';
 
 abstract class SearchSnippet
     implements Built<SearchSnippet, SearchSnippetBuilder> {
@@ -32,5 +33,5 @@ abstract class SearchSnippet
         SearchSnippet.serializer, json.decode(jsonString));
   }
 
-  static Serializer<SearchSnippet> get serializer => _$SearchSnippetSerializer;
+  static Serializer<SearchSnippet> get serializer => _$searchSnippetSerializer;
 }
