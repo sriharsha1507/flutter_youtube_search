@@ -7,6 +7,7 @@ import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:youtube_search/data/model/search/id.dart';
 import 'package:youtube_search/data/model/search/search_snippet.dart';
+import 'package:youtube_search/data/model/serializer/serializers.dart';
 
 part 'search_item.g.dart';
 
