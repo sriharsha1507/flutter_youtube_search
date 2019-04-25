@@ -15,7 +15,7 @@ abstract class YoutubeSearchResult
   // fields go here
   @nullable
   String get nextPageToken;
-  BuiltList<SearchItem> get searchItems;
+  BuiltList<SearchItem> get items;
 
   YoutubeSearchResult._();
 

@@ -23,8 +23,8 @@ class _$YoutubeSearchResultSerializer
   Iterable serialize(Serializers serializers, YoutubeSearchResult object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
-      'searchItems',
-      serializers.serialize(object.searchItems,
+      'items',
+      serializers.serialize(object.items,
           specifiedType:
               const FullType(BuiltList, const [const FullType(SearchItem)])),
     ];
@@ -53,8 +53,8 @@ class _$YoutubeSearchResultSerializer
           result.nextPageToken = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'searchItems':
-          result.searchItems.replace(serializers.deserialize(value,
+        case 'items':
+          result.items.replace(serializers.deserialize(value,
               specifiedType: const FullType(
                   BuiltList, const [const FullType(SearchItem)])) as BuiltList);
           break;
@@ -69,15 +69,15 @@ class _$YoutubeSearchResult extends YoutubeSearchResult {
   @override
   final String nextPageToken;
   @override
-  final BuiltList<SearchItem> searchItems;
+  final BuiltList<SearchItem> items;
 
   factory _$YoutubeSearchResult(
           [void Function(YoutubeSearchResultBuilder) updates]) =>
       (new YoutubeSearchResultBuilder()..update(updates)).build();
 
-  _$YoutubeSearchResult._({this.nextPageToken, this.searchItems}) : super._() {
-    if (searchItems == null) {
-      throw new BuiltValueNullFieldError('YoutubeSearchResult', 'searchItems');
+  _$YoutubeSearchResult._({this.nextPageToken, this.items}) : super._() {
+    if (items == null) {
+      throw new BuiltValueNullFieldError('YoutubeSearchResult', 'items');
     }
   }
 
@@ -95,19 +95,19 @@ class _$YoutubeSearchResult extends YoutubeSearchResult {
     if (identical(other, this)) return true;
     return other is YoutubeSearchResult &&
         nextPageToken == other.nextPageToken &&
-        searchItems == other.searchItems;
+        items == other.items;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, nextPageToken.hashCode), searchItems.hashCode));
+    return $jf($jc($jc(0, nextPageToken.hashCode), items.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('YoutubeSearchResult')
           ..add('nextPageToken', nextPageToken)
-          ..add('searchItems', searchItems))
+          ..add('items', items))
         .toString();
   }
 }
@@ -121,18 +121,17 @@ class YoutubeSearchResultBuilder
   set nextPageToken(String nextPageToken) =>
       _$this._nextPageToken = nextPageToken;
 
-  ListBuilder<SearchItem> _searchItems;
-  ListBuilder<SearchItem> get searchItems =>
-      _$this._searchItems ??= new ListBuilder<SearchItem>();
-  set searchItems(ListBuilder<SearchItem> searchItems) =>
-      _$this._searchItems = searchItems;
+  ListBuilder<SearchItem> _items;
+  ListBuilder<SearchItem> get items =>
+      _$this._items ??= new ListBuilder<SearchItem>();
+  set items(ListBuilder<SearchItem> items) => _$this._items = items;
 
   YoutubeSearchResultBuilder();
 
   YoutubeSearchResultBuilder get _$this {
     if (_$v != null) {
       _nextPageToken = _$v.nextPageToken;
-      _searchItems = _$v.searchItems?.toBuilder();
+      _items = _$v.items?.toBuilder();
       _$v = null;
     }
     return this;
@@ -157,12 +156,12 @@ class YoutubeSearchResultBuilder
     try {
       _$result = _$v ??
           new _$YoutubeSearchResult._(
-              nextPageToken: nextPageToken, searchItems: searchItems.build());
+              nextPageToken: nextPageToken, items: items.build());
     } catch (_) {
       String _$failedField;
       try {
-        _$failedField = 'searchItems';
-        searchItems.build();
+        _$failedField = 'items';
+        items.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'YoutubeSearchResult', _$failedField, e.toString());
