@@ -1,6 +1,6 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:youtube_search/data/model/search/model_search.dart';
-import 'package:youtube_search/data/network/YoutubeDataSource.dart';
+import 'package:youtube_search/data/network/youtube_data_source.dart';
 
 class YoutubeRepository {
   YoutubeDataSource _youtubeDataSource;
