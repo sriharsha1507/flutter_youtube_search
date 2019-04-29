@@ -15,3 +15,5 @@ abstract class SearchInitiated extends SearchEvent
   factory SearchInitiated([updates(SearchInitiatedBuilder b)]) =
       _$SearchInitiated;
 }
+
+class FetchNextResultPage extends SearchEvent {}
