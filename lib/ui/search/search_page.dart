@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:kiwi/kiwi.dart' as kiwi;
-import 'package:youtube_search/ui/search/search_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kiwi/kiwi.dart' as kiwi;
+import 'package:youtube_search/ui/search/search.dart';
+import 'package:youtube_search/ui/search/search_bloc.dart';
+import 'package:youtube_search/ui/search/widget/centered_message.dart';
+import 'package:youtube_search/ui/search/widget/search_bar.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -10,6 +13,7 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   final _searchBloc = kiwi.Container().resolve<SearchBloc>();
+  final _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -25,63 +29,16 @@ class _SearchPageState extends State<SearchPage> {
   Scaffold _buildScaffold() {
     return Scaffold(
       appBar: AppBar(title: SearchBar()),
-    );
-  }
-}
-
-class SearchBar extends StatelessWidget {
-  const SearchBar({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(5)),
-      child: Padding(
-        padding: const EdgeInsets.only(left: 5),
-        child: SearchField(),
-      ),
-    );
-  }
-}
-
-class SearchField extends StatefulWidget {
-  const SearchField({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  _SearchFieldState createState() => _SearchFieldState();
-}
-
-class _SearchFieldState extends State<SearchField> {
-  final _controller = TextEditingController();
-  final _focusNode = FocusNode();
-
-  void initState() {
-    super.initState();
-    _focusNode.addListener(() {
-      if (_focusNode.hasFocus) {
-        _controller.selection =
-            TextSelection(baseOffset: 0, extentOffset: _controller.text.length);
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      decoration: InputDecoration(
-          hintText: 'Search videos',
-          border: InputBorder.none,
-          icon: Icon(Icons.search, color: Colors.black.withOpacity(0.5))),
-      onSubmitted: (searchQuery) {
-        BlocProvider.of<SearchBloc>(context).onSearchInitiated(searchQuery);
-      },
-      controller: _controller,
-      focusNode: _focusNode,
+      body: BlocBuilder(
+          bloc: _searchBloc,
+          builder: (context, SearchState state) {
+            if (state.isInitiated) {
+              return CenteredMessage(
+                message: 'Start searching',
+                icon: Icons.ondemand_video,
+              );
+            }
+          }),
     );
   }
 }
