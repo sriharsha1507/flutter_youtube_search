@@ -97,7 +97,28 @@ class _SearchPageState extends State<SearchPage> {
       padding: const EdgeInsets.all(8.0),
       child: Card(
         child: Column(
-          children: <Widget>[Image.network(videoSnippet.thumbnails.high.url)],
+          children: <Widget>[
+            AspectRatio(
+                aspectRatio: 16 / 9,
+                child: Image.network(
+                  videoSnippet.thumbnails.high.url,
+                  fit: BoxFit.cover,
+                )),
+            SizedBox(
+              height: 5,
+            ),
+            Text(videoSnippet.title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25,
+                )),
+            SizedBox(
+              height: 5,
+            ),
+            Text(videoSnippet.description)
+          ],
         ),
       ),
     );
