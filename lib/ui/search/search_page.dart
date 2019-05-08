@@ -46,6 +46,7 @@ class _SearchPageState extends State<SearchPage> {
             }
 
             if (state.isSuccessful) {
+              return _buildResultList(state);
             } else {
               return CenteredMessage(
                   message: state.error, icon: Icons.error_outline);
@@ -91,5 +92,14 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 
-  Widget _buildVideoListItemCard(SearchSnippet snippet) {}
+  Widget _buildVideoListItemCard(SearchSnippet videoSnippet) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Card(
+        child: Column(
+          children: <Widget>[Image.network(videoSnippet.thumbnails.high.url)],
+        ),
+      ),
+    );
+  }
 }
