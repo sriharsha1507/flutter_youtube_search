@@ -17,21 +17,70 @@ class _$ThumbnailSerializer implements StructuredSerializer<Thumbnail> {
   @override
   Iterable serialize(Serializers serializers, Thumbnail object,
       {FullType specifiedType = FullType.unspecified}) {
-    return <Object>[];
+    final result = <Object>[
+      'url',
+      serializers.serialize(object.url, specifiedType: const FullType(String)),
+      'width',
+      serializers.serialize(object.width, specifiedType: const FullType(int)),
+      'height',
+      serializers.serialize(object.height, specifiedType: const FullType(int)),
+    ];
+
+    return result;
   }
 
   @override
   Thumbnail deserialize(Serializers serializers, Iterable serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    return new ThumbnailBuilder().build();
+    final result = new ThumbnailBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final dynamic value = iterator.current;
+      switch (key) {
+        case 'url':
+          result.url = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'width':
+          result.width = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+        case 'height':
+          result.height = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+      }
+    }
+
+    return result.build();
   }
 }
 
 class _$Thumbnail extends Thumbnail {
+  @override
+  final String url;
+  @override
+  final int width;
+  @override
+  final int height;
+
   factory _$Thumbnail([void Function(ThumbnailBuilder) updates]) =>
       (new ThumbnailBuilder()..update(updates)).build();
 
-  _$Thumbnail._() : super._();
+  _$Thumbnail._({this.url, this.width, this.height}) : super._() {
+    if (url == null) {
+      throw new BuiltValueNullFieldError('Thumbnail', 'url');
+    }
+    if (width == null) {
+      throw new BuiltValueNullFieldError('Thumbnail', 'width');
+    }
+    if (height == null) {
+      throw new BuiltValueNullFieldError('Thumbnail', 'height');
+    }
+  }
 
   @override
   Thumbnail rebuild(void Function(ThumbnailBuilder) updates) =>
@@ -43,24 +92,53 @@ class _$Thumbnail extends Thumbnail {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Thumbnail;
+    return other is Thumbnail &&
+        url == other.url &&
+        width == other.width &&
+        height == other.height;
   }
 
   @override
   int get hashCode {
-    return 439250697;
+    return $jf($jc($jc($jc(0, url.hashCode), width.hashCode), height.hashCode));
   }
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('Thumbnail').toString();
+    return (newBuiltValueToStringHelper('Thumbnail')
+          ..add('url', url)
+          ..add('width', width)
+          ..add('height', height))
+        .toString();
   }
 }
 
 class ThumbnailBuilder implements Builder<Thumbnail, ThumbnailBuilder> {
   _$Thumbnail _$v;
 
+  String _url;
+  String get url => _$this._url;
+  set url(String url) => _$this._url = url;
+
+  int _width;
+  int get width => _$this._width;
+  set width(int width) => _$this._width = width;
+
+  int _height;
+  int get height => _$this._height;
+  set height(int height) => _$this._height = height;
+
   ThumbnailBuilder();
+
+  ThumbnailBuilder get _$this {
+    if (_$v != null) {
+      _url = _$v.url;
+      _width = _$v.width;
+      _height = _$v.height;
+      _$v = null;
+    }
+    return this;
+  }
 
   @override
   void replace(Thumbnail other) {
@@ -77,7 +155,8 @@ class ThumbnailBuilder implements Builder<Thumbnail, ThumbnailBuilder> {
 
   @override
   _$Thumbnail build() {
-    final _$result = _$v ?? new _$Thumbnail._();
+    final _$result =
+        _$v ?? new _$Thumbnail._(url: url, width: width, height: height);
     replace(_$result);
     return _$result;
   }
