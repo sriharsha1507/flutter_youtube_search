@@ -9,7 +9,9 @@ import 'package:youtube_search/data/model/serializer/serializers.dart';
 part 'thumbnail.g.dart';
 
 abstract class Thumbnail implements Built<Thumbnail, ThumbnailBuilder> {
-  // fields go here
+  String get url;
+  int get width;
+  int get height;
 
   Thumbnail._();
 
