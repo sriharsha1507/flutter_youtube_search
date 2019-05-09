@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kiwi/kiwi.dart' as kiwi;
+import 'package:youtube_search/data/model/detail/model_detail.dart';
 import 'package:youtube_search/data/model/search/search_snippet.dart';
+import 'package:youtube_search/ui/detail/detail_page.dart';
 import 'package:youtube_search/ui/search/search.dart';
 import 'package:youtube_search/ui/search/search_bloc.dart';
 import 'package:youtube_search/ui/search/widget/centered_message.dart';
@@ -64,7 +66,7 @@ class _SearchPageState extends State<SearchPage> {
         itemBuilder: (context, index) {
           return index >= state.searchResults.length
               ? _buildLoaderListItem()
-              : _buildVideoListItemCard(state.searchResults[index].snippet);
+              : _buildVideoListItem(state.searchResults[index]);
         },
       ),
     );
@@ -89,6 +91,17 @@ class _SearchPageState extends State<SearchPage> {
   Widget _buildLoaderListItem() {
     return Center(
       child: CircularProgressIndicator(),
+    );
+  }
+
+  Widget _buildVideoListItem(SearchItem searchItem) {
+    return GestureDetector(
+      child: _buildVideoListItemCard(searchItem.snippet),
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (_) {
+          return DetailPage(videoId: searchItem.id.videoId);
+        }));
+      },
     );
   }
 
