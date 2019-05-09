@@ -4,8 +4,9 @@ import 'dart:convert';
 
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:youtube_search/data/model/search/thumbnail.dart';
 import 'package:youtube_search/data/model/serializer/serializers.dart';
+
+import 'model_common.dart';
 
 part 'thumbnails.g.dart';
 
