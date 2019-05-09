@@ -45,7 +45,7 @@ class YoutubeRepository {
   Future<VideoItem> fetchVideoInfo({String id}) async {
     final videoResponse = await _youtubeDataSource.fetchVideoInfo(id: id);
     if (videoResponse.items.isEmpty) throw NoSuchVideoException;
-    return videoResponse.items[0]
+    return videoResponse.items[0];
   }
 }
 
