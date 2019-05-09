@@ -24,14 +24,13 @@ class DetailBloc extends Bloc<DetailEvent, DetailState> {
     DetailEvent event,
   ) async* {
     if (event is ShowDetail) {
-      yield DetailState.loading()
-
-      try{
+      yield DetailState.loading();
+      try {
         final videoItem = await repository.fetchVideoInfo(id: event.id);
         yield DetailState.success(videoItem);
-      } on YoutubeVideoError catch(e){
+      } on YoutubeVideoError catch (e) {
         yield DetailState.failure(e.message);
-      }on NoSuchVideoException catch(e){
+      } on NoSuchVideoException catch (e) {
         yield DetailState.failure(e.message);
       }
     }
